@@ -1,4 +1,4 @@
-/*Author: Ing. Ruben D. Chirinos R. Tlf: +58 0416-3422924, email: elsaiya@gmail.com*/
+/*Author: software especializado*/
 
 /*tipos de graficos
     bar
@@ -9,18 +9,18 @@
     pie
     doughnut
     bubble
- Con pointRadius podrás establecer el radio del punto.
+ Con pointRadius podrÃ¡s establecer el radio del punto.
 
-fill: false, –> no aparecerá relleno por debajo de la línea.
+fill: false, â€“> no aparecerÃ¡ relleno por debajo de la lÃ­nea.
 
-showLine: false, –> no aparecerá la línea.
+showLine: false, â€“> no aparecerÃ¡ la lÃ­nea.
 
-Es decir, si ponemos fill y showLine a false, tendremos un gráfico de puntos, en lugar de un gráfico
-de líneas. pointStyle: ‘circle’, ‘triangle’, ‘rect’, ‘rectRounded’, ‘rectRot’, ‘cross’, ‘crossRot’, ‘star’,
-‘line’, and ‘dash’ Podría ser incluso una imagen.
+Es decir, si ponemos fill y showLine a false, tendremos un grÃ¡fico de puntos, en lugar de un grÃ¡fico
+de lÃ­neas. pointStyle: â€˜circleâ€™, â€˜triangleâ€™, â€˜rectâ€™, â€˜rectRoundedâ€™, â€˜rectRotâ€™, â€˜crossâ€™, â€˜crossRotâ€™, â€˜starâ€™,
+â€˜lineâ€™, and â€˜dashâ€™ PodrÃ­a ser incluso una imagen.
 
-spanGaps está por defecto a false. Si lo ponemos a true, cuando te falte un valor en la línea, no se 
-romperá la línea.*/
+spanGaps estÃ¡ por defecto a false. Si lo ponemos a true, cuando te falte un valor en la lÃ­nea, no se 
+romperÃ¡ la lÃ­nea.*/
 
 /* GRAFICO PARA VENTAS POR SUCURSALES ANUAL
 function showGraphBar()
