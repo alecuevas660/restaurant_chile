@@ -33,8 +33,8 @@ class Db
         $this->carpeta = $_ENV['CARPETA'] ?? '';
 
         if (!isset($this->dbh)) {
-            $dbHost     = $_ENV['DB_HOST'] ?? 'localhost';
-            $dbPort     = $_ENV['DB_PORT'] ?? 3306; // ✅ Puerto desde .env
+            $dbHost     = $_ENV['DB_HOST'] ?? 'mysql.railway.internal';
+            $dbPort     = $_ENV['DB_PORT'] ?? 59786; // ✅ Puerto desde .env
             $dbUsername = $_ENV['DB_USERNAME'] ?? 'root';
             $dbPassword = $_ENV['DB_PASSWORD'] ?? '';
             $dbName     = $_ENV['DB_DATABASE'] ?? 'softrestaurant_chile';
