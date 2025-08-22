@@ -1,24 +1,35 @@
-<IfModule mod_rewrite.c>
-    Options +FollowSymLinks
-    RewriteEngine On
-     
-    # Remover trailing slashes.
-    # ejemplo  miweb.com/algo/ redirije a miweb.com/algo
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.+)/$ /$1 [R=permanent,QSA]
-     
-    # Redirige a HTML si existe.
-    # ejemplo  miweb.com/algo muestra contenido de miweb.com/algo.html
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME}.html -f
-    RewriteRule ^(.+)$ $1.html [L,QSA]
-     
-    # Redirije a PHP si existe.
-    # ejemplo  miweb.com/algo miestra contenido de miweb.com/algo.php
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME}.php -f
-    RewriteRule ^(.+)$ $1.php [L,QSA]
+# Evita conflictos con content negotiation
+Options -MultiViews
+Options +FollowSymLinks
 
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1) Proxy HTTPS (Railway): marca la request como HTTPS internamente
+  # para que PHP/Apache consideren secure cookies/URLs.
+  RewriteCond %{HTTP:X-Forwarded-Proto} =https
+  RewriteRule .* - [E=HTTPS:on]
+
+  # 2) Quita trailing slash solo si NO es directorio real
+  #    y no tiene extensión (para no tocar /css/app.css/)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} .+/$
+  RewriteCond %{REQUEST_URI} !\.[^./]+/$
+  RewriteRule ^(.+?)/$ /$1 [R=301,L,QSA]
+
+  # 3) Si existe un .html con ese nombre, servirlo
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+)$ $1.html [L,QSA]
+
+  # 4) Si existe un .php con ese nombre, servirlo
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.php -f
+  RewriteRule ^(.+)$ $1.php [L,QSA]
 </IfModule>
+
+# Opcional: define index por si tu panel es index.php
+DirectoryIndex index.php index.html
